@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0757d9">
+<title>Datos de transferencia | Ferre Arandas</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6fb;font-family:Arial,Helvetica,sans-serif;color:#101828}
+.wrap{min-height:100vh;padding:16px}.card{max-width:720px;margin:auto;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 12px 35px #071b3a22}
+header{background:linear-gradient(135deg,#030508,#082452 60%,#0757d9);color:#fff;padding:24px 20px}
+.brand{font-size:30px;font-weight:900;letter-spacing:.5px}.sub{font-size:14px;margin-top:4px;color:#dbe8ff}
+h1{font-size:27px;margin:22px 0 0}.intro{margin:6px 0 0;color:#dbe8ff}
+main{padding:20px}.tag{display:inline-block;background:#eaf2ff;color:#0757d9;font-weight:800;padding:8px 12px;border-radius:99px;font-size:12px}
+.box{border:1px solid #d9e3f1;border-radius:16px;padding:17px;margin-top:14px;background:#fbfdff}
+.label{font-size:12px;text-transform:uppercase;color:#667085;font-weight:800;margin-bottom:5px}
+.bank{font-size:38px;font-weight:900;color:#0757d9;margin-bottom:18px}.name{font-size:21px;font-weight:800}
+.clabe{font-size:25px;font-weight:900;letter-spacing:1px;word-break:break-word}
+button{width:100%;margin-top:12px;padding:12px;border:0;border-radius:11px;background:#0757d9;color:#fff;font-weight:900;font-size:15px}
+h2{font-size:19px;margin:22px 0 10px}.step{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid #edf1f7}
+.n{min-width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:#eaf2ff;color:#0757d9;font-weight:900}
+.step b{display:block}.step span{font-size:14px;color:#667085;line-height:1.4}
+.wa{margin-top:18px;background:linear-gradient(135deg,#0757d9,#0b7cff);color:#fff;padding:17px;border-radius:17px}
+.wa small{font-weight:800}.phone{font-size:23px;font-weight:900;margin-top:4px}.wa a{display:block;text-align:center;background:#fff;color:#0757d9;text-decoration:none;font-weight:900;padding:11px;border-radius:11px;margin-top:11px}
+footer{background:#05070b;color:#fff;text-align:center;padding:17px}footer p{margin:4px;color:#cbd5e1;font-size:13px;line-height:1.45}
+.note{text-align:center;color:#667085;font-size:12px;margin:14px 0 0}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+<header>
+<div class="brand">FERRE ARANDAS</div><div class="sub">FERRETERÍA · CALIDAD · PRECIO · SERVICIO</div>
+<h1>Datos para transferencia</h1><p class="intro">Realiza tu pago de forma fácil y segura.</p>
+</header>
+<main>
+<span class="tag">TRANSFERENCIA BANCARIA</span>
+<div class="box">
+<div class="label">Banco</div><div class="bank">BBVA</div>
+<div class="label">Titular</div><div class="name">WENCESLAO LOZANO PEREZ</div>
+</div>
+<div class="box">
+<div class="label">CLABE interbancaria</div>
+<div class="clabe" id="clabe">0124 4100 1057 9128 65</div>
+<button id="copyBtn" type="button" onclick="copiar()">📋 Copiar CLABE</button>
+</div>
+<h2>¿Cómo realizar tu transferencia?</h2>
+<div class="step"><div class="n">1</div><div><b>Verifica los datos</b><span>Confirma banco, titular y CLABE antes de enviar.</span></div></div>
+<div class="step"><div class="n">2</div><div><b>Realiza tu transferencia</b><span>Envía el monto correspondiente a tu compra desde la app de tu banco.</span></div></div>
+<div class="step"><div class="n">3</div><div><b>Envía tu comprobante</b><span>Compártelo por WhatsApp para confirmar tu pago.</span></div></div>
+<div class="wa"><small>ENVÍA TU COMPROBANTE POR WHATSAPP</small><div class="phone">722-512-8702</div>
+<a href="https://wa.me/527225128702" target="_blank" rel="noopener">Abrir WhatsApp</a></div>
+<p class="note">Revisa cuidadosamente los datos antes de confirmar tu pago.</p>
+</main>
+<footer><p><b>FERRE ARANDAS FERRETERÍA</b></p><p>C. Manuel J. Clouthier 626-B, San Jerónimo Chicahualco,<br>52170 San Jerónimo Chicahualco, Méx.</p></footer>
+</div></div>
+<script>
+async function copiar(){
+  const clabe = "012441001057912865";
+  const b = document.getElementById("copyBtn");
+  const original = "📋 Copiar CLABE";
+
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(clabe);
+    } else {
+      throw new Error("Clipboard API no disponible");
+    }
+  } catch (e) {
+    const ta = document.createElement("textarea");
+    ta.value = clabe;
+    ta.readOnly = true;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    ta.style.top = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    ta.setSelectionRange(0, ta.value.length);
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    if (!ok) throw new Error("No se pudo copiar");
+  }
+
+  b.textContent = "✓ CLABE copiada";
+  b.style.background = "#0b8f4d";
+  setTimeout(() => {
+    b.textContent = original;
+    b.style.background = "";
+  }, 1800);
+}</script>
+</body></html>
